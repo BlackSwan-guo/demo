@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/imgchange.css" />
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="box">
+				<div class="logo"></div>
+				<div id="content">
+					<div class="top">
+						<button id="cir">循环切换</button><button id="ord">顺序切换</button>
+						<p id="p1"></p>
+					</div>
+					<div id="imglist">
+						<p id="page">1/4</p>
+						<img id="img" src="img/img01.jpg">
+						<a href="javascrpt:;" id="prev">＜</a><a href="javascrpt:;" id="next">＞</a>
+						<p id="tex">文字描述一</p>
+						<div id="warn">
+							<p class="java">JavaScript提醒</p>
+							<p id="first">已经到第一张啦~</p>
+							<a href="javascript:;"id="conf">确定</a>
+							<img id="close" src="img/close.png">
+						</div>
+					</div>
+					<div id="mask"></div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var next = document.getElementById("next");
+			var prev = document.getElementById("prev");
+			var img = document.getElementById("img");
+			var page = document.getElementById("page");
+			var tex = document.getElementById("tex");
+			var imgArr = [
+				"img/img01.jpg",
+				"img/img02.jpg",
+				"img/img03.jpg",
+				"img/img04.jpg"
+			];
+			var textArr = [
+				"文字描述一",
+				"文字描述二",
+				"文字描述三",
+				"文字描述四"
+			];
+			cir.onclick = function(){//存在问题：打开页面不能直接切换，需要点击切换模式
+				p1.innerHTML = "图片可以从最后一张跳转到第一张循环切换";
+				cir.style.background = "#fff";
+				cir.style.color = "#000";
+				ord.style.background = "#000";
+				ord.style.color = "#fff";
+				function change() {
+					img.src = imgArr[num];
+					page.innerHTML = (num+1) +"/"+ imgArr.length;
+					tex.innerHTML = textArr[num];
+				}
+				var num = 0;
+				change();//初始化
+				prev.onclick = function(){//循环模式上一张
+					num = num - 1;
+					if( num == -1 ){
+						num = imgArr.length - 1;
+					}
+					change();
+				}
+				next.onclick = function(){//循环模式下一张
+					num = num + 1;
+					if( num == imgArr.length ){
+						num = 0;
+					}
+					change();
+				}
+			}
+			var p1 = document.getElementById("p1")
+			ord.onclick = function(){//顺序模式
+				p1.innerHTML = "图片只能到最后一张或只能到第一张切换";
+				ord.style.background = "#fff";
+				ord.style.color = "#000";
+				cir.style.background = "#000";
+				cir.style.color = "#fff";
+				function change() {
+					img.src = imgArr[num];
+					page.innerHTML = (num+1) +"/"+ imgArr.length;
+					tex.innerHTML = textArr[num];
+				}
+				var num = 0;
+				change();//初始化
+				prev.onclick = function(){//顺序模式上一张
+					num = num - 1;
+					if( num == -1 ){
+						num = 0;
+						warn.style.display = "block";
+						mask.style.display = "block";
+						first.innerHTML = "已经是第一张啦~";
+					}
+					change();
+				}
+				next.onclick = function(){//顺序模式下一张
+					num = num + 1;
+					if( num == imgArr.length ){
+						num = 3;
+						warn.style.display = "block";
+						mask.style.display = "block";
+						first.innerHTML = "已经是最后一张啦~";
+					}
+					change();
+				}
+			}
+			var conf = document.getElementById("conf");
+			conf.onclick = function(){//弹层确定
+				warn.style.display = "none";
+				mask.style.display = "none";
+			}
+			var close = document.getElementById("close");
+			var mask = document.getElementById("mask");
+			close.onclick = function(){//弹层取消
+				warn.style.display = "none";
+				mask.style.display = "none";
+			}
+		</script>
+	</body>
+</html>

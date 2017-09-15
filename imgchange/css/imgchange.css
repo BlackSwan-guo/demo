@@ -1,0 +1,171 @@
+img {
+	border: none;
+	vertical-align: top;
+}
+p {
+	margin: 0;
+}
+a {
+	text-decoration: none;
+}
+#wrap {
+	width: 674px;
+	height: 512px;
+	background: url(../img/bg.jpg) no-repeat;
+	padding: 38px;
+}
+#box {
+	width: 682px;
+	height: 506px;
+	background: #eee;
+	border-radius: 20px;
+	position: relative;
+}
+.logo {
+	width: 5px;
+	height: 90px;
+	border-radius: 3px;
+	background: #fff;
+	position: absolute;
+	top: 220px;
+	left: 20px;
+}
+#content {
+	width:560px;
+	height: 405px;
+	padding-top: 10px;
+	background: #000;
+	position: absolute;
+	top: 50px;
+	left: 46px;
+}
+.top {
+	margin-left: 148px;
+}
+#cir {
+	width: 130px;
+	height: 36px;
+	background:#000;
+	color:#fff;
+}
+#ord {
+	width: 130px;
+	height: 36px;
+	background:#000;
+	color:#fff;
+
+}
+#p1 {
+	font:14px/24px "微软雅黑";
+	color: #fff;
+}
+#imglist {
+	width: 550px;
+	height: 314px;
+	position: relative;
+}
+#img {
+	width: 550px;
+	height: 314px;
+	overflow: hidden;
+	position: absolute;
+	top: 30px;
+	left: 5px;
+}
+#prev {
+	display: block;
+	width: 30px;
+	height: 50px;
+	font:28px/50px arial;
+	color: #fff;
+	position: absolute;
+	top: 135px;
+	left: 10px;
+}
+#prev:hover {
+	background:rgba(0,0,0,0.5);
+}
+#next {
+	width: 30px;
+	height: 50px;
+	display: block;
+	font:28px/50px arial;
+	color: #fff;
+	position: absolute;
+	top: 135px;
+	left: 520px;
+}
+#next:hover {
+	background:rgba(0,0,0,0.5);
+}
+#page {
+	width: 550px;
+	height: 32px;
+	font:14px/32px "微软雅黑";
+	color: #fff;
+	text-align: center;
+	position: absolute;
+	top:30px;
+	left: 5px;
+	z-index: 1;
+}
+#tex {
+	width: 550px;
+	height: 32px;
+	background:rgba(0,0,0,0.5);
+	font:14px/32px "微软雅黑";
+	color: #fff;
+	text-align: center;
+	position: absolute;
+	top:312px;
+	left: 5px;
+}
+.M {
+	position: absolute;
+	top: 225px;
+	left:615px;
+}
+.java {
+	font:18px/24px "微软雅黑";
+	color: #fff;
+}
+#first {
+	font:12px/32px "微软雅黑";
+	color: #fff;
+}
+#warn {
+	width: 214px;
+	height: 105px;
+	background: rgba(0,0,0,0.5);
+	padding-left: 86px;
+	padding-top: 45px;
+	position:absolute;
+	top: 100px;
+	left: 140px;
+	display: none;
+	z-index: 2;
+}
+#close {
+	position: absolute;
+	top: 20px;
+	left: 270px;
+}
+#conf {
+	display: block;
+	width: 80px;
+	height: 24px;
+	border: 1px solid#fff;
+	font:12px/24px "微软雅黑";
+	color: #fff;
+	text-align: center;
+}
+#mask {
+	width: 560px;
+	height: 405px;
+	background: rgba(0,0,0,0.2);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	display: none;
+}

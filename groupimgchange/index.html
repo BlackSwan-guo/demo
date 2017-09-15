@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/groupimgchange.css" />
+	</head>
+	<body>
+		<section id="wrap">
+			<div id="pgroup"><a href="javascript:;">上一组</a></div>
+			<div id="ngroup"><a href="javascript:;">下一组</a></div>
+			<img id="limg" src="img/2.jpg"/>
+			<div id="lprev"></div>
+			<div id="lnext"></div>
+			<p id="p1"></p>
+			<p id="p2"></p>
+			<img id="rimg" src="img/01.jpg"/>
+			<div id="rprev"></div>
+			<div id="rnext"></div>
+			<p id="p3"></p>
+			<p id="p4"></p>
+			<script>
+				var pgro = document.getElementById("pgroup");
+				var ngro = document.getElementById("ngroup");
+				var limg = document.getElementById("limg");
+				var rimg = document.getElementById("rimg");
+				var lprev = document.getElementById("lprev");
+				var lnext = document.getElementById("lnext");
+				var rprev = document.getElementById("rprev");
+				var rnext = document.getElementById("rnext");
+				var rimg = document.getElementById("rimg");
+				var p1 = document.getElementById("p1");
+				var p2 = document.getElementById("p2");
+				var p3 = document.getElementById("p3");
+				var p4 = document.getElementById("p4");
+				var limgArr = [
+				"img/2.jpg",
+				"img/3.jpg",
+				"img/4.jpg",
+				"img/b3.jpg"
+				];
+				var ltextArr = [
+				"第一组第1张",
+				"第一组第2张",
+				"第一组第3张",
+				"第一组第4张"
+				];
+				var rimgArr = [
+				"img/01.jpg",
+				"img/03.jpg",
+				"img/A3.jpg"
+				];
+				var rtextArr = [
+				"第二组第1张",
+				"第二组第2张",
+				"第二组第3张"
+				];
+				var num = 0;
+				var num2 = 0;
+			function change() {//初始化
+				limg.src = limgArr[num];
+				p1.innerHTML = ltextArr[num];
+				p2.innerHTML = (num+1) +"/"+ limgArr.length;
+				rimg.src = rimgArr[num2];
+				p3.innerHTML = rtextArr[num2];
+				p4.innerHTML = (num2+1) +"/"+ rimgArr.length;
+			}
+			change();
+			ngro.onclick = function(){//下一组
+				num = num + 1;
+				if( num == limgArr.length ){//循环
+					num = 0;
+				}
+				change();
+				num2 = num2 + 1;
+				if( num2 == rimgArr.length ){
+					num2 = 0;
+				}
+				change();
+			}
+			pgro.onclick = function(){//上一组
+				num = num - 1;
+				if( num == -1 ){
+					num = limgArr.length - 1;//循环
+				}
+				change();
+				num2 = num2 - 1;
+				if( num2 == -1 ){
+					num2 = rimgArr.length - 1;
+				}
+				change();
+			}
+			lnext.onclick = function(){//第一组下一张
+				num = num + 1;
+				if( num == limgArr.length ){
+					num = 0;
+				}
+				change();
+			}
+			lprev.onclick = function(){//第一组上一张
+				num = num - 1;
+				if( num == -1 ){
+					num = limgArr.length - 1;
+				}
+				change();
+			}
+			rnext.onclick = function(){//第二组下一张
+				num2 = num2 + 1;
+				if( num2 == rimgArr.length ){
+					num2 = 0;
+				}
+				change();
+			}
+			rprev.onclick = function(){//第二组上一张
+				num2 = num2 - 1;
+				if( num2 == -1 ){
+					num2 = rimgArr.length - 1;
+				}
+				change();
+			}
+			</script>
+		</section>
+	</body>
+</html>

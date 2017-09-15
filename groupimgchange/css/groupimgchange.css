@@ -1,0 +1,116 @@
+a {
+	text-decoration: none;
+}
+img {
+	border: none;
+	vertical-align: top;
+}
+#wrap {
+	width: 871px;
+	height: 553px;
+	margin: 50px auto;
+	background: url(../img/bg.jpg) no-repeat;
+	position: relative;
+}
+#pgroup {
+	width: 46px;
+	height: 12px;
+	border: 1px solid#ccc;
+	border-radius: 5px;
+	font:12px/12px "微软雅黑";
+	text-align: center;
+	position: absolute;
+	top:50px;
+	left: 24px;
+}
+#pgroup a {
+	color: #000;
+}
+#ngroup {
+	width: 46px;
+	height: 12px;
+	border: 1px solid#ccc;
+	border-radius: 5px;
+	font:12px/12px "微软雅黑";
+	text-align: center;
+	position: absolute;
+	top:50px;
+	left: 80px;
+}
+#ngroup a {
+	color: #000;
+}
+#limg {
+	width: 447px;
+	height: 245px;
+	position: absolute;
+	top: 120px;
+	left: 50px;
+}
+#lprev {
+	width: 223px;
+	height: 245px;
+	position: absolute;
+	top: 120px;
+	left: 50px;
+	/*border: 1px solid#000;*/
+}
+#lnext {
+	width: 223px;
+	height: 245px;
+	position: absolute;
+	top: 120px;
+	left: 274px;
+	/*border: 1px solid#000;*/
+}
+#p1 {
+	font:bold 12px/12px "微软雅黑";
+	color: #000;
+	position: absolute;
+	top: 370px;
+	left: 240px;
+}
+#p2 {
+	font:12px/12px "微软雅黑";
+	color: #000;
+	position: absolute;
+	top: 390px;
+	left: 50px;
+}
+#rimg {
+	width: 248px;
+	height: 245px;
+	position: absolute;
+	top: 120px;
+	left: 554px;
+}
+#rprev {
+	width: 124px;
+	height: 245px;
+	position: absolute;
+	top: 120px;
+	left: 554px;
+	/*border: 1px solid#000;*/
+}
+#rnext {
+	width: 124px;
+	height: 245px;
+	position: absolute;
+	top: 120px;
+	left: 678px;
+	/*border: 1px solid#000;*/
+}
+#p3 {
+	font:bold 12px/12px "微软雅黑";
+	color: #000;
+	position: absolute;
+	top: 370px;
+	left: 650px;
+}
+#p4 {
+	font:12px/12px "微软雅黑";
+	color: #000;
+	position: absolute;
+	top: 390px;
+	left: 554px;
+}
