@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>饼状图</title>
+    </head>
+    <body>
+        <div id="data" style="width: 600px;height:400px;"></div>
+        <script src="js/echarts.js"></script>
+        <script>
+            var myChart = echarts.init(document.getElementById('data'));
+            myChart.setOption({
+                series : [
+                    {
+                        name: '访问来源',
+                        type: 'pie',//类型：饼状图
+                        radius: '65%',//扇区圆心角展现数据的百分比，半径展现数据的大小。
+                        data:[//我们需要指定每个数据项的名称，这时候需要每个项为一个对象(需要对个别内容指定进行个性化定义时)
+                            {value:235, name:'视频广告'},
+                            {value:274, name:'联盟广告'},
+                            {value:310, name:'邮件营销'},
+                            {value:335, name:'直接访问'},
+                            {value:360, name:'搜索引擎'},
+                            {value:400, name:'店面活动'}
+                        ]
+                    }
+                ]
+            })
+            myChart.setOption(option);
+        </script>
+    </body>
+</html>

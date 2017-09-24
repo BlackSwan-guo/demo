@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>柱状图</title>
+    </head>
+    <body>
+        <div id="data" style="width: 600px;height:400px;"></div>
+        <script src="js/echarts.js"></script>
+        <script>
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('data'));
+            // 指定图表的配置项和数据
+            var option = {//(title ->show:是否显示标题组件。text:主标题文本，支持使用 \n 换行。link:指定窗口打开主标题超链接。subtext:副标题文本，支持使用 \n 换行。)
+                title: {//标题（在 ECharts 2.x 中单个 ECharts 实例最多只能拥有一个标题组件。但是在 ECharts 3 中可以存在任意多个标题组件，这在需要标题进行排版，或者单个实例中的多个图表都需要标题时会比较有用。）
+                    text: 'ECharts 入门示例 柱状图'//主标题文本
+                },
+                tooltip: {},//提示信息（是否显示提示框组件，包括提示框浮层和 axisPointer）
+                legend: {//图例组件（图例组件展现了不同系列的标记(symbol)，颜色和名字。可以通过点击图例控制哪些系列不显示。ECharts 3 中单个 echarts 实例中可以存在多个图例组件，会方便多个图例的布局。）
+                    data:['销量']
+                },
+                xAxis: {//x轴
+                    data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]//系列中的数据内容数组
+                },
+                yAxis: {},//y轴
+                series: [{//系列名称，用于tooltip的显示，legend 的图例筛选，在 setOption 更新数据和配置项时用于指定对应的系列。
+                    name: '销量',
+                    type: 'bar',//类型：柱状图 （pie：饼图  scatter:散点图 effectScatter：带有涟漪特效动画的散点（气泡）图）
+                    data: [5, 20, 36, 10, 10, 20]//如果需要在数据中加入其它维度给 visualMap 组件用来映射到颜色等其它图形属性。每个数据项也可以是数组
+                }]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        </script>
+    </body>
+</html>
