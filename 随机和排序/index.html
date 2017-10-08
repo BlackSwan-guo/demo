@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <link rel="stylesheet" type="text/css"  href="css/random.css" />
+    </head>
+    <body>
+        <button id="suiji">随机</button>
+        <button id="shunxu">从小到大</button>
+        <ul id="list">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+        </ul>
+        <script>
+            var list = document.getElementById("list");
+            var lis = list.getElementsByTagName("li");
+            var suiji = document.getElementById("suiji");
+            var shunxu = document.getElementById("shunxu");
+            var str = "";
+            var arr = [
+                {
+                    "order":0,
+                    "left":0,
+                    "top":0
+                },
+                {
+                    "order":1,
+                    "left":100,
+                    "top":0
+                },
+                {
+                    "order":2,
+                    "left":200,
+                    "top":0
+                },
+                {
+                    "order":3,
+                    "left":300,
+                    "top":0
+                },
+                {
+                    "order":4,
+                    "left":0,
+                    "top":100
+                },
+                {
+                    "order":5,
+                    "left":100,
+                    "top":100
+                },
+                {
+                    "order":6,
+                    "left":200,
+                    "top":100
+                },
+                {
+                    "order":7,
+                    "left":300,
+                    "top":100
+                }
+            ];
+            dingwei();
+            //封一个函数，给li定位
+            function dingwei(){
+                for ( var i = 0; i < lis.length; i++ ){
+                    lis[i].style.left = arr[i].left+"px";
+                    lis[i].style.top = arr[i].top+"px";
+                }
+            }
+            suiji.onclick = function(){//随机显示
+                arr.sort(function(a,b){
+                    return Math.random()-0.5;
+                })
+                dingwei();
+            }
+            var onoff = true;//定义true为从小到大
+            shunxu.onclick = function(){
+                if( onoff == true ){
+                    arr.sort(function(a,b){
+                        return a.order - b.order;
+                    })
+                    this.innerHTML = "从大到小";
+                }else{
+                    arr.sort(function(a,b){
+                        return b.order - a.order;
+                    })
+                    this.innerHTML = "从小到大";
+                }
+                onoff = !onoff;
+                dingwei();
+            }
+        </script>
+    </body>
+</html>

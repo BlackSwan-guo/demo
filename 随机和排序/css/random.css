@@ -1,0 +1,55 @@
+body {
+    padding-top: 50px;
+    padding-left: 100px;
+}
+ul,
+li {
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+#list {
+    width: 400px;
+    height: 200px;
+    position: relative;
+    margin-top: 10px;
+}
+#list li {
+    width:100px;
+    height: 100px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font: 50px/2 "微软雅黑";
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border:2px solid#fff;
+    box-sizing:border-box;
+    transition: 1s;
+}
+#list li:nth-of-type(1) {
+    background: aquamarine;
+}
+#list li:nth-of-type(2) {
+    background: brown;
+}
+#list li:nth-of-type(3) {
+    background: burlywood;
+}
+#list li:nth-of-type(4) {
+    background: cadetblue;
+}
+#list li:nth-of-type(5) {
+    background: chartreuse;
+}
+#list li:nth-of-type(6) {
+    background: coral;
+}
+#list li:nth-of-type(7) {
+    background: darkgoldenrod;
+}
+#list li:nth-of-type(8) {
+    background: darkorange;
+}
