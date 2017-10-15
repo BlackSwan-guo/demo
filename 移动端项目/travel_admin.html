@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>请选择出行人</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/mui.min.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<script src="js/mui.min.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+</head>
+<body>	
+	
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">请选择出行人</h1>
+	</header>
+	
+	<div class="mui-content travel_admin">
+		<!--新增出行人-->
+		<div class="tr_ad_add">
+			<a href="travel_add.html" class="zz-block">
+				<button class="mui-btn mui-btn-block">新增成人 <span class="mui-icon mui-icon-plus"></span></button>
+			</a>
+			<a href="travel_add.html" class="zz-block">
+				<button class="mui-btn mui-btn-block">新增儿童 <span class="mui-icon mui-icon-plus"></span></button>
+			</a>
+		</div>
+		
+		
+		<!--管理出行人-->
+		<ul class="tr_ad_edit zz_over_text">
+			<li>
+				<label class="mui-pull-left">
+					<input name="checkbox" class="tr_ad_e_check_hide" type="checkbox" style="opacity: 0;">
+					<p class="tr_ad_e_check"><i></i></p>
+					<span class="tr_ad_e_name">乘客1</span>
+					<span class="tr_ad_e_sex">男</span>
+				</label>
+				<a class="tr_ad_e_edit"><img src="images/tr_ad_e_edit.png" /></a>
+			</li>
+			<li>
+				<label class="mui-pull-left">
+					<input name="checkbox" class="tr_ad_e_check_hide" type="checkbox" style="opacity: 0;">
+					<p class="tr_ad_e_check"><i></i></p>
+					<span class="tr_ad_e_name">乘客2</span>
+					<span class="tr_ad_e_sex">女</span>
+				</label>
+				<a class="tr_ad_e_edit"><img src="images/tr_ad_e_edit.png" /></a>
+			</li>
+			
+			<li>
+				<label class="mui-pull-left">
+					<input name="checkbox" class="tr_ad_e_check_hide" type="checkbox" style="opacity: 0;">
+					<p class="tr_ad_e_check"><i></i></p>
+					<span class="tr_ad_e_name">乘客3</span>
+					<span class="tr_ad_e_sex">男</span>
+				</label>
+				<a class="tr_ad_e_edit"><img src="images/tr_ad_e_edit.png" /></a>
+			</li>
+		</ul>
+		<p class="fix_btn"><button class="mui-btn-block mui-btn delete_btn">删除</button></p>
+	</div>
+</body>
+<script>
+	$(function(){	
+		/*选择出行人*/
+	    $('.tr_ad_e_check_hide').click(function(){
+	    	var onOff = $(this).prop('checked');
+		    if(onOff){
+		        $(this).prop('checked','checked');
+		        $(this).next().addClass('tr_ad_e_checked');
+		    }else{
+		        $(this).prop('checked','');
+		        $(this).next().removeClass('tr_ad_e_checked');
+		    }
+		    onOff = !onOff;
+		});
+		
+		/*删除按钮*/
+		$('.delete_btn').click(function(){
+			if($('.tr_ad_e_checked').length == 0){
+				mui.confirm('请选择你想要删除的出行人','温馨提示',['确定']);
+			}else{
+				$('.tr_ad_e_checked').parent().parent().remove();
+			}
+		})
+		
+    })
+</script>
+</html>

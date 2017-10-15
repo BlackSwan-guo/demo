@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>全部订单</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/mui.min.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<script src="js/mui.min.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/mui.pullToRefresh.js"></script>
+	<script src="js/mui.pullToRefresh.material.js"></script>
+</head>
+<body>	
+	
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">全部订单</h1>
+	</header>
+	
+	<div class="mui-content order_list">
+		<div class="mui-slider-group">			
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="javascript:void(0);">
+						<img class="mui-media-object mui-pull-left" src="images/coll_img1.jpg">
+						<div class="mui-media-body mui-pull-left">
+							<h5 class="mui-ellipsis order_title">澳大利亚+墨尔本+凯恩斯+悉尼</h5>
+							<p class="mui-ellipsis">10-12  上海出发</p>
+						</div>
+						<p class="order_price mui-pull-right mui-text-right">
+							<i>￥</i><strong>1667</strong>
+							<span class="order_state">未付款</span>
+						</p>
+					</a>
+					<p class="order_operate mui-text-right">
+						<a href="javascript:void(0);" class="order_operate1">取消</a>
+						<a href="javascript:void(0);" class="order_operate2">支付</a>
+					</p>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="javascript:void(0);">
+						<img class="mui-media-object mui-pull-left" src="images/coll_img2.jpg">
+						<div class="mui-media-body mui-pull-left">
+							<h5 class="mui-ellipsis order_title">澳大利亚+墨尔本+凯恩斯+悉尼</h5>
+							<p class="mui-ellipsis">10-12  上海出发</p>
+						</div>
+						<p class="order_price mui-pull-right mui-text-right">
+							<i>￥</i><strong>1667</strong>
+							<span class="order_state o_had_pay">已完成</span>
+						</p>
+					</a>
+					<p class="order_operate mui-text-right">
+						<a href="javascript:void(0);" class="order_operate2">评价</a>
+					</p>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="javascript:void(0);">
+						<img class="mui-media-object mui-pull-left" src="images/coll_img3.jpg">
+						<div class="mui-media-body mui-pull-left">
+							<h5 class="mui-ellipsis order_title">澳大利亚+墨尔本+凯恩斯+悉尼</h5>
+							<p class="mui-ellipsis">10-12  上海出发</p>
+						</div>
+						<p class="order_price mui-pull-right mui-text-right">
+							<i>￥</i><strong>1667</strong>
+							<span class="order_state o_had_pay">已完成</span>
+						</p>
+					</a>
+					<p class="order_operate mui-text-right">
+						<a href="javascript:void(0);" class="order_operate2">评价</a>
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+<script>
+	mui.init();
+	(function($) {
+		//阻尼系数
+		var deceleration = mui.os.ios?0.003:0.0009;
+		$('.mui-scroll-wrapper').scroll({
+			bounce: false,
+			indicators: true, //是否显示滚动条
+			deceleration:deceleration
+		});
+		var articlePage = 1;
+		$.ready(function() {
+			//循环初始化所有下拉刷新，上拉加载。
+			$.each(document.querySelectorAll('.mui-slider-group'), function(index, pullRefreshEl) {
+				$(pullRefreshEl).pullToRefresh({
+					up: {
+						contentnomore:'没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: function() {
+							var self = this;
+							var ul = self.element.querySelector('.mui-table-view');
+							if(ul.children.length<10){
+								setTimeout(function() {
+									ul.appendChild(createFragment(ul, index, 5));
+									self.endPullUpToRefresh(false);
+								}, 1000);
+							}else{
+								self.endPullUpToRefresh(true);
+							}
+							
+						}
+					}
+				});
+			});
+			
+			var createFragment = function(ul,index, count,reverse) {
+				var length = ul.querySelectorAll('li').length;
+				var fragment = document.createDocumentFragment();
+				var li;
+				for (var i = 0; i < count; i++) {
+					li = document.createElement('li');
+					li.className = 'mui-table-view-cell';	
+					li.innerHTML = '<a href="javascript:void(0);">'+
+						'<img class="mui-media-object mui-pull-left" src="images/coll_img3.jpg">'+
+						'<div class="mui-media-body mui-pull-left">'+
+						'<h5 class="mui-ellipsis order_title">澳大利亚+墨尔本+凯恩斯+悉尼</h5>'+
+						'<p class="mui-ellipsis">10-12  上海出发</p>'+
+						'</div>'+
+						'<p class="order_price mui-pull-right mui-text-right">'+
+						'<i>￥</i><strong>1667</strong>'+
+						'<span class="order_state o_had_pay">已完成</span>'+
+						'</p>'+
+						'</a>'+
+						'<p class="order_operate mui-text-right">'+
+						'<a href="javascript:void(0);" class="order_operate2">评价</a>'+
+						'</p>'
+					fragment.appendChild(li);
+				}
+				return fragment;
+			};
+		});
+	})(mui);
+	
+	$('.mui-slider-group').css('min-height',parseFloat($('html').height()-$('header').height())+'px');
+</script>
+</html>

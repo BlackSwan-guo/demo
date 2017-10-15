@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>我的咨询</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/animate.css"/>
+	<link href="css/mui.min.css" rel="stylesheet" />
+	<link href="css/mui-icons-extra.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<script src="js/mui.min.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+</head>
+<body>	
+	
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">我的咨询</h1>
+	</header>
+	
+	<div class="mui-content mine_consultation">
+		<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+	        <li class="mui-table-view-cell">
+	        	<h4 class="mui-ellipsis m_c_title">【天海游轮   新世纪号】上海出发6天5晚行程</h4>
+	            <div class="mui-table">
+	                <div class="mui-table-cell mui-col-xs-11">
+	                    <h5 class="m_c_ask">
+	                    	<span class="m_c_icon1">问</span>
+	                    	<span class="m_c_text">会不会翻船?</span>
+	                    </h5>
+	                    
+	                    <p class="mui-h6 m_c_ans">
+	                    	<span class="m_c_icon1">答</span>
+	                    	<span class="m_c_text mui-ellipsis-2">友谊的小船说翻就翻</span>
+	                    </p>
+	                </div>
+	                <div class="mui-table-cell mui-col-xs-1">
+	                    <span class="mui-h5 m_c_mess">
+	                    	<img src="images/mine_message.png" />
+	                    </span>
+                   </div>
+	            </div>
+	            <p class="m_c_time">5天前</p>
+	        </li>
+	        
+	        <li class="mui-table-view-cell">
+	        	<h4 class="mui-ellipsis m_c_title">【天海游轮   新世纪号】上海出发6天5晚行程</h4>
+	            <div class="mui-table">
+	                <div class="mui-table-cell mui-col-xs-11">
+	                    <h5 class="m_c_ask">
+	                    	<span class="m_c_icon1">问</span>
+	                    	<span class="m_c_text">内部设施怎么样?</span>
+	                    </h5>
+	                    <p class="mui-h6 m_c_ans">
+	                    	<span class="m_c_icon1">答</span>
+	                    	<span class="m_c_text mui-ellipsis-2">游船里面游玩的项目很多,服务员也很有水平</span>
+	                    </p>
+	                </div>
+	                <div class="mui-table-cell mui-col-xs-1">
+	                    <span class="mui-h5 m_c_mess">
+	                    	<img src="images/mine_message.png" />
+	                    </span>
+                   </div>
+	            </div>
+	            <p class="m_c_time">6天前</p>
+	        </li>
+	        
+	        <li class="mui-table-view-cell">
+	        	<h4 class="mui-ellipsis m_c_title">【天海游轮   新世纪号】上海出发6天5晚行程</h4>
+	            <div class="mui-table">
+	                <div class="mui-table-cell mui-col-xs-11">
+	                    <h5 class="m_c_ask">
+	                    	<span class="m_c_icon1">问</span>
+	                    	<span class="m_c_text">安全吗?</span>
+	                    </h5>
+	                    <p class="mui-h6 m_c_ans">
+	                    	<span class="m_c_icon1">答</span>
+	                    	<span class="mui-ellipsis-2 m_c_text">已经是第二次来了，觉得很安全，随时有人巡逻，也有保安站在船边,放心好了！</span>
+	                    </p>
+	                </div>
+	                <div class="mui-table-cell mui-col-xs-1">
+	                    <span class="mui-h5 m_c_mess">
+	                    	<img src="images/mine_message.png" />
+	                    </span>
+                   </div>
+	            </div>
+	            <p class="m_c_time">7天前</p>
+	        </li>	    
+	   </ul>
+	</div>
+	
+	<!--右侧滑块-->
+	<div class="zz-alert animated fadeInRight" style="display: block;"><div class="zz-a-box" style="float: right;"><h4 class="zz-a-title">【天海游轮   新世纪号】上海出发6天5晚行程</h4><div class="zz-a-text"><textarea placeholder="请在此输入您的问题"></textarea><button class="mui-btn zz-a-apply">提交</button><button class="mui-btn zz-a-close">取消</button></div></div></div>
+
+</body>
+<script>
+	$(function(){		
+        /*右侧嵌入式弹窗调用*/
+        $('.m_c_mess').click(function(){
+        	/*当前索引值*/
+        	var _this = $('.m_c_mess').index(this);
+            zz_a_confirm({
+                title:"【天海游轮   新世纪号】上海出发6天5晚行程",
+                list : '<textarea placeholder="请在此输入您的问题"></textarea>' +
+                '<button class="mui-btn zz-a-apply">提交</button><button class="mui-btn zz-a-close">取消</button>',
+                animateIn:"",
+                animateOut:""
+            });
+        })
+    });
+
+
+    /*封装右侧嵌入式弹窗*/
+    function zz_a_confirm(json){
+        var title = json.title || "";
+        var html = json.list || "";
+        var animateIn = json.animateIn || 'fadeInRight';
+        var animateOut = json.animateOut || 'fadeOutRight';
+        var callback = json.callback || null;
+        $('.zz-alert').remove();
+        var str = '<div class="zz-alert animated"><div class="zz-a-box">'+
+                '<h4 class="zz-a-title">标题!!!</h4>'+
+                '<div class="zz-a-text"></div>'+
+                '</div></div>';
+        $('body').append(str) ;
+        $('.zz-alert').show();
+        $('.zz-alert').addClass(animateIn);
+        $('.zz-alert').removeClass(animateOut);
+        $('.zz-a-title').text(title);
+        $('.zz-a-text').append(html);
+        $('.zz-a-close').click(function(){
+            callback && callback();
+            $('.zz-alert').removeClass(animateIn);
+            $('.zz-alert').addClass(animateOut);
+        });
+        if(animateIn == 'fadeInLeft'){
+            $('.zz-a-box').css('float','left');
+        }else if(animateIn == 'fadeInRight'){
+            $('.zz-a-box').css('float','right');
+        }
+    }
+
+</script>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>评价</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/mui.min.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<script src="js/mui.min.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/mui.pullToRefresh.js"></script>
+	<script src="js/mui.pullToRefresh.material.js"></script>
+</head>
+<body class="bg_fff">	
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">评价</h1>
+	</header>
+	
+	<div class="mui-content evaluate_list">
+		<div class="mui-slider-group">
+			<p class="ev_title">评价列表</p>
+			<ul class="ev_lists">
+				<li>
+					<div class="ev_name">
+						<span>大艺术家</span>
+						<p class="ev_star">
+							<i></i>
+							<i></i>
+							<i></i>
+							<i></i>
+							<i></i>
+						</p>
+					</div>
+					<div class="ev_text">皇家号游船很赞，里面的酒水全部免费，而且里面的服务生很帅，服务态度也很好，是一次不错的体验！强烈推荐！</div>
+				</li>
+				<li>
+					<div class="ev_name">
+						<span>欧卡丘娃娃</span>
+						<p class="ev_star">
+							<i></i>
+							<i></i>
+							<i></i>
+							<i></i>
+						</p>
+					</div>
+					<div class="ev_text">很便宜，很划算！酒水全部免费，内置很多游乐设施，而且济州岛景色超美的，处在这样的环境中整个人都很愉悦，是一次不错的体验！可以交到高素质人群！</div>
+				</li>
+				<li>
+					<div class="ev_name">
+						<span>王阿大</span>
+						<p class="ev_star">
+							<i></i>
+							<i></i>
+							<i></i>
+							<i></i>
+							<i></i>
+						</p>
+					</div>
+					<div class="ev_text">七月中旬出游，现在才抽空写写点评。我是带九岁的女儿一起出游的，历时五天四夜，父女俩都玩得比较尽兴，至今常常回忆起那几天惬意生活，希望明年能带更多的家庭成员参与邮轮度假！船上的餐饮算是不错，两个自助餐厅，丽都和浦江餐厅分别主要提供中式和西式的餐饮服务。丽都餐厅的饭菜说不上可口，质量也仅仅一般般，但是胜在时间灵活，绝对让你不会饿肚子。</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+<script>
+	mui.init();
+	(function($) {
+		//阻尼系数
+		var deceleration = mui.os.ios?0.003:0.0009;
+		$('.mui-scroll-wrapper').scroll({
+			bounce: false,
+			indicators: true, //是否显示滚动条
+			deceleration:deceleration
+		});
+		var articlePage = 1;
+		$.ready(function() {
+			//循环初始化所有下拉刷新，上拉加载。
+			$.each(document.querySelectorAll('.mui-slider-group'), function(index, pullRefreshEl) {
+				$(pullRefreshEl).pullToRefresh({
+					up: {
+						contentnomore:'没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: function() {
+							var self = this;
+							var ul = self.element.querySelector('.ev_lists');
+							if(ul.children.length<10){
+								setTimeout(function() {
+									ul.appendChild(createFragment(ul, index, 5));
+									self.endPullUpToRefresh(false);
+								}, 1000);
+							}else{
+								self.endPullUpToRefresh(true);
+							}
+							
+						}
+					}
+				});
+			});
+			
+			var createFragment = function(ul,index, count,reverse) {
+				var length = ul.querySelectorAll('li').length;
+				var fragment = document.createDocumentFragment();
+				var li;
+				for (var i = 0; i < count; i++) {
+					li = document.createElement('li');
+					li.className = '';	
+					li.innerHTML = '<div class="ev_name">'+
+					'<span>大艺术家</span>'+
+					'<p class="ev_star">'+
+					'<i></i>'+
+					'<i></i>'+
+					'<i></i>'+
+					'<i></i>'+
+					'<i></i>'+
+					'</p>'+
+					'</div>'+
+					'<div class="ev_text">皇家号游船很赞，里面的酒水全部免费，而且里面的服务生很帅，服务态度也很好，是一次不错的体验！强烈推荐！</div>'
+					fragment.appendChild(li);
+				}
+				return fragment;
+			};
+		});
+	})(mui);
+	
+	$('.mui-slider-group').css('min-height',parseFloat($('html').height()-$('header').height())+'px');
+</script>
+</html>

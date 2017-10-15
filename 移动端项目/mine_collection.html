@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>我的收藏</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/mui.min.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<script src="js/mui.min.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/mui.pullToRefresh.js"></script>
+	<script src="js/mui.pullToRefresh.material.js"></script>
+</head>
+<body>	
+	
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">我的收藏</h1>
+	</header>
+	
+	<div class="mui-content mine_collection">
+		<div class="mui-slider-group">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left m_coll_img" src="images/coll_img1.jpg">
+						<div class="mui-media-body">
+							<p class="m_coll_text">【天海游轮    新世纪号】上海出发6天5晚行程  途径韩国济州岛、日本长崎、鹿儿岛</p>
+						</div>		
+						<p class="m_coll_total_price mui-text-right"><span>应付总额：</span><i>￥</i><strong>999.00</strong></p>
+					</a>
+							<span class="mui-icon mui-icon-trash mine_coll_detele"></span>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left m_coll_img" src="images/coll_img2.jpg">
+						<div class="mui-media-body">
+							<p class="m_coll_text">【海洋量子号】上海出发6天5晚行程   途径广岛、高知</p>						
+							
+						</div>					
+						<p class="m_coll_total_price mui-text-right"><span>应付总额：</span><i>￥</i><strong>4999.00</strong></p>
+					</a>
+					<span class="mui-icon mui-icon-trash mine_coll_detele"></span>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left m_coll_img" src="images/coll_img3.jpg">
+						<div class="mui-media-body">
+							<p class="m_coll_text">【海洋水手号】上海出发5天4晚行程   途径巴生、普吉岛</p>
+						</div>	
+						<p class="m_coll_total_price mui-text-right"><span>应付总额：</span><i>￥</i><strong>3999.00</strong></p>
+					</a>
+					<span class="mui-icon mui-icon-trash mine_coll_detele"></span>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+<script>
+	mui.init();
+	(function($) {
+		//阻尼系数
+		var deceleration = mui.os.ios?0.003:0.0009;
+		$('.mui-scroll-wrapper').scroll({
+			bounce: false,
+			indicators: true, //是否显示滚动条
+			deceleration:deceleration
+		});
+		var articlePage = 1;
+		$.ready(function() {
+			//循环初始化所有下拉刷新，上拉加载。
+			$.each(document.querySelectorAll('.mui-slider-group'), function(index, pullRefreshEl) {
+				$(pullRefreshEl).pullToRefresh({
+					up: {
+						contentnomore:'没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: function() {
+							var self = this;
+							var ul = self.element.querySelector('.mui-table-view');
+							if(ul.children.length<10){
+								setTimeout(function() {
+									ul.appendChild(createFragment(ul, index, 5));
+									self.endPullUpToRefresh(false);
+								}, 1000);
+							}else{
+								self.endPullUpToRefresh(true);
+							}
+							
+						}
+					}
+				});
+			});
+			
+			var createFragment = function(ul,index, count,reverse) {
+				var length = ul.querySelectorAll('li').length;
+				var fragment = document.createDocumentFragment();
+				var li;
+				for (var i = 0; i < count; i++) {
+					li = document.createElement('li');
+					li.className = 'mui-table-view-cell';	
+					li.innerHTML = '<a href="javascript:;">'+
+			            '<img class="mui-media-object mui-pull-left m_coll_img" src="images/coll_img3.jpg">'+
+			            '<div class="mui-media-body">'+
+			            '<p class="m_coll_text">'+(1+i)+'【海洋水手号】上海出发5天4晚行程   途径巴生、普吉岛</p>'+
+			            '<p class="m_coll_total_price mui-text-right"><span>应付总额：</span><i>￥</i><strong>3999.00</strong></p>'+
+			            '</div>'+
+			            '</a>'+
+                        '<span class="mui-icon mui-icon-trash mine_coll_detele" onclick="detele_collection(this)"></span>';
+					fragment.appendChild(li);
+				}
+				return fragment;
+			};
+		});
+	})(mui);
+	
+	$('.mui-slider-group').css('min-height',parseFloat($('html').height()-$('header').height())+'px');
+
+
+    $('.mine_coll_detele').click(function(){
+        $(this).parent().remove();
+    });
+	/*删除封装函数*/
+    function detele_collection(obj){
+        $(obj).parent().remove();
+    }
+
+</script>
+</html>

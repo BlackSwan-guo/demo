@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>商品详情</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/mui.min.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<script src="js/mui.min.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+</head>
+<body>		
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<a href="javascript:void(0);" class="mui-pull-right share_text">分享赚钱</a>
+	</header>
+  	
+	<div class="mui-content commodity_detail">
+		<!--轮播图-->
+		<div class="mui-slider">
+			<div class="mui-slider-group mui-slider-loop">
+			    <!--支持循环，需要重复图片节点-->
+			    <!--最后一张图片-->
+			    <div class="mui-slider-item mui-slider-item-duplicate">
+			    	<a href="javaScript:void(0);">
+			    		<!--图片大小640*342的比例-->
+			    		<img src="images/slider_img1.jpg" />
+			    	</a>
+			    </div>
+			    <!--第一张图片-->
+			    <div class="mui-slider-item">
+			    	<a href="javaScript:void(0);">
+			    		<!--图片大小640*342的比例-->
+			    		<img src="images/slider_img1.jpg" />
+			    	</a>
+			    </div>
+			    
+			    <!--最后一张图片-->
+			    <div class="mui-slider-item">
+			    	<a href="javaScript:void(0);">
+			    		<!--图片大小640*342的比例-->
+			    		<img src="images/slider_img1.jpg" />
+			    	</a>
+			    </div>
+			    <!--支持循环，需要重复图片节点-->
+			    <!--第一张图片-->
+			    <div class="mui-slider-item">
+			    	<a href="javaScript:void(0);">
+			    		<!--图片大小640*342的比例-->
+			    		<img src="images/slider_img1.jpg" />
+			    	</a>
+			    </div>
+			</div>
+		
+			<div class="mui-slider-indicator">
+				<div class="mui-indicator mui-active"></div>
+				<div class="mui-indicator"></div>
+			</div>
+		</div>
+	
+		<div class="c_d_text1_box bg_fff x_mgb10">
+			<h5 class="com_detail_txt mui-ellipsis">【天海游轮   新世纪号】上海出发6天5晚行程</h5>
+			<p class="mui-ellipsis c_d_describe">途径韩国济州岛、日本长崎、鹿儿岛 </p>
+			<p class="m_coll_total_price"><i>￥</i><strong>2099</strong><span>/人</span></p>
+		</div>
+	
+	
+		<div class="bg_fff c_d_select x_mgb10">
+			<a>选择：套餐/班期<span class="mui-icon mui-icon-arrowright mui-pull-right"></span></a>
+		</div>
+	
+	
+		<!--商品详情-->
+		<div class="x_com_nav bg_fff x_mg0">
+			<div id="segmentedControl" class="mui-segmented-control">
+				<a class="mui-control-item mui-active" href="#item1">产品说明</a>
+				<a class="mui-control-item" href="#item2">全部评价</a>
+			</div>
+		</div>
+		<div class="bg_fff com_detail_box">
+			<div class="recommend mui-control-content mui-active" id="item1">
+				<p>产品说明详情</p>
+			</div>
+			
+			<div class="recommend mui-control-content" id="item2">
+				<p>全部评论详情</p>
+			</div>
+		</div>
+		
+	
+		<!--右侧滑块-->
+		<div class="scroll_alert">
+			<i class="mui-icon mui-icon-close"></i>
+			<div class="c_d_package x_borB_e5">
+				<p class="c_d_p_text mui-text-left">套餐详情</p>
+				<button type="button" class="mui-btn selected">1大1小</button>
+				<button type="button" class="mui-btn">2大1小</button>
+				<button type="button" class="mui-btn">2大2小</button>
+			</div>
+			<div class="c_d_package">
+				<p class="c_d_p_text mui-text-left">班期详情</p>
+				<button type="button" class="mui-btn selected">09-29</button>
+				<button type="button" class="mui-btn">09-30</button>
+				<button type="button" class="mui-btn">10-01</button>
+			</div>
+		</div>
+
+
+		<!--底部按钮-->
+		<p class="fix_btn fix_order_btn">
+			<button class="mui-pull-left mui-btn-block mui-btn ask_btn"><img src="images/mine_message.png" />咨询</button>
+			<button class="mui-pull-left mui-btn-block mui-btn collection_btn"><img src="images/commodity_like_icon.png" />收藏</button>
+			<button class="mui-btn-block mui-btn pay_btn">立即预定</button>
+		</p>
+	</div>
+	
+</body>
+<script>
+	/*套餐的选择*/
+	$('.c_d_package button').click(function(){
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+	});
+
+	/*打开右侧滑块*/
+    $('.c_d_select span').click(function(){
+    	$('.scroll_alert').animate({
+    		right:0
+    	},670)
+    });
+    
+    /*关闭右侧滑块*/
+    $('.mui-icon-close').click(function(){
+    	$('.scroll_alert').animate({
+    		right:'-100%'
+    	},670)
+    });
+
+	$('.mui-slider').css('height',parseFloat($('.mui-slider-item').height())+'px');
+</script>
+</html>

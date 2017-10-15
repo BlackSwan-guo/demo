@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>订单详情</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/mui.min.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<script src="js/mui.min.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+</head>
+<body>	
+	
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">订单详情</h1>
+	</header>
+	
+	<div class="mui-content order_details">
+		<div class="o_d_orderNum">
+			<p class="mui-pull-left">订单号 2533229510</p>
+			<p class="mui-pull-right">2017-01-01 预订</p>
+		</div>
+		<div class="mui-slider-group">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left m_coll_img" src="images/coll_img1.jpg">
+						<div class="mui-media-body mui-ellipsis-2">天海游轮    新世纪号上海出发6天5晚行程  途径韩国济州岛</div>					
+					</a>
+				</li>
+			</ul>
+			<div class="o_d_order_info tr_add_list">
+				<p class="mui-text-center o_d_i_text1">
+					<span>01月01日</span>
+					<span>周一出发</span>
+					<span>成人*1</span>
+				</p>
+				<p class="o_d_i_text2 mui-text-center">行程相关</p>
+				<ul class="o_d_i_text3">
+					<li>
+						<span>出行人</span>
+						<input type="text" value="宝宝" readonly="readonly">
+					</li>
+					<li>
+						<span>联系人</span>
+						<input type="text" value="宝宝" readonly="readonly">
+						<span>联系方式</span>
+						<input type="text" value="158****5945" readonly="readonly">
+					</li>
+				</ul>
+				<p class="mui-text-right o_d_total">
+					<span>(未支付)总额： </span> <i>￥</i><strong>5092</strong>
+				</p>
+			</div>
+		</div>
+		
+		<!--以下为订单的不同状态下的不同操作按钮-->
+		<!--1、未支付状态-->
+		<p class="fix_btn fix_no_pay">
+			<button class="mui-pull-left mui-btn-block mui-btn cancel_btn">取消订单</button>
+			<button class="mui-btn-block mui-btn pay_btn">支付</button>
+		</p>
+
+		<!--2、订单完成（待评价）-->
+		<!--<p class="fix_btn">
+			<button class="mui-btn-block mui-btn pay_btn">评价</button>
+		</p>-->
+		
+		<!--3、订单完成（待商户确认...）-->
+		<!--<p class="fix_btn fix_waiting">
+			<button class="mui-btn-block mui-btn pay_btn">商户确认中,请耐心等待...</button>
+		</p>-->
+		
+		<!--4、商户未确认（已退款）-->
+		<!--<p class="fix_btn fix_waiting">
+			<button class="mui-btn-block mui-btn pay_btn">商户未确认,已退款</button>
+		</p>-->
+	</div>
+</body>
+</html>

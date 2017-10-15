@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>天海游轮  新世纪号</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/mui.min.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<script src="js/mui.min.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+</head>
+<body>	
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">天海游轮  新世纪号</h1>
+	</header>
+	
+	<div class="mui-content travel_order">
+		<!--旅客信息列表-->
+		<div class="zz_over_text">
+			<div class="o_d_orderNum" style="border-bottom: 1px solid #e4e4e4;">
+				<p class="mui-pull-left">订单号 2533229510</p>
+				<p class="mui-pull-right">2016-01-01 预订</p>
+			</div>
+			
+			<!--时间等信息-->
+			<div class="tr_o_list1">
+				<h5 class="tr_o_title">【天海游轮   新世纪号】上海出发6天5晚行程</h5>
+				<p class="tr_o_list1_text">游轮6天5晚多日游</p>
+				<p class="tr_o_list1_text">出行日期：<span>2017-01-02</span></p>
+				<p class="tr_o_list1_text">出行人数：<span>1成人1儿童（共2人）</span></p>
+			</div>
+			<p class="mui-text-right o_d_total" style="border-top: 1px solid #e4e4e4;">
+				<span>(未支付)总额： </span> <i>￥</i><strong>5092</strong>
+			</p>
+			
+			<!--联系人信息-->
+			<div class="tr_add_list">
+				<p class="tr_add_l_title">联系人信息<span>(用于接收订单信息)</span></p>
+				<ul>
+					<li>
+						<span>姓名</span>
+						<input class="user_name" type="text" placeholder="请填写联系人姓名" />
+					</li>
+					<li>
+						<span>手机</span>
+						<input class="user_phone" type="tel" placeholder="手机号码(数字)" maxlength="11" />
+					</li>
+					<li>
+						<span>邮箱</span>
+						<input class="user_email" type="email" placeholder="请填写邮箱地址" />
+					</li>
+				</ul>
+			</div>
+			
+			<!--出行人信息-->
+			<div class="tr_add_list list_specil">
+				<p class="tr_add_l_title">出行人信息<a class="tr_o_choose" href="travel_admin.html"><img src="images/tr_order_add.png" />选择出行人</a></p>
+				<ul>
+					<li>
+						<span>成人</span>
+						<p class="tr_add_l_select">
+							<input type="text" value="张三" readonly="readonly" />
+							<a href="travel_admin.html" class="tr_o_choose">重选</a>
+						</p>
+					</li>
+					<li>
+						<span>儿童</span>
+						<input type="text" value="小张三" readonly="readonly" />
+					</li>
+					<li>
+						<a class="tr_o_limit" href="javascript:void(0);">查看预定限制</a>
+						<div class="tr_add_care_text">
+							<p>未满18周岁的未成年人必须由其监护人来预定。</p>
+							<i class="mui-icon mui-icon-closeempty close_btn"></i>
+						</div>
+						<textarea class="tr_o_need" rows="10" placeholder="请输入特殊要求，我们会尽量满足，如果满足不了，还请见谅"></textarea>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<p class="fix_btn"><button class="mui-btn-block mui-btn next_btn">下一步，请进行支付</button></p>
+	</div>
+</body>
+<script>
+	$(function(){
+		/*查看预定限制*/
+		$('.tr_o_limit').click(function(){
+			$('.tr_add_care_text').slideDown();
+		});
+		/*关闭预定限制*/
+		$('.close_btn').click(function(){
+			$('.tr_add_care_text').slideUp();
+		});
+		
+		/*下一步*/
+		var isMobile =  /^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$/;
+		var isEmail  = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$/;
+		$('.next_btn').click(function(){
+			if(!$.trim($('.user_name').val())){
+				mui.confirm('请填写联系人姓名','温馨提示',['确定']);
+			}else if(!$.trim($('.user_phone').val())){
+				mui.confirm('请填写联系人手机','温馨提示',['确定']);
+			}else if(!$(".user_phone").val().match(isMobile)){
+				mui.confirm('请输入正确的手机号','温馨提示',['确定']);
+			}else if(!$.trim($('.user_email').val())){
+				mui.confirm('请填写联系人邮箱','温馨提示',['确定']);
+			}else if(!$(".user_email").val().match(isEmail)){
+				mui.confirm('请输入正确的邮箱','温馨提示',['确定']);
+			}else{
+				mui.confirm('提交成功','温馨提示',['确定']);
+			}
+		})
+	})
+</script>
+</html>

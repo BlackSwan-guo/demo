@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>咨询列表</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/mui.min.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<script src="js/mui.min.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/mui.pullToRefresh.js"></script>
+	<script src="js/mui.pullToRefresh.material.js"></script>
+</head>
+<body>	
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">咨询列表</h1>
+	</header>
+	
+	<div class="mui-content mine_consultation">
+		<h4 class="mui-ellipsis c_list_title bg_fff">关于天海邮轮 新世纪号的问题</h4>
+		<div class="zz_over_text mui-control-content mui-active">
+			<div class="mui-slider-group">
+				<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+			        <li class="mui-table-view-cell">
+			            <div class="mui-table">
+			                <div class="mui-table-cell mui-col-xs-11">
+			                    <h5 class="m_c_ask">
+			                    	<span class="m_c_icon1">问</span>
+			                    	<span class="m_c_text">会不会翻船?</span>
+			                    </h5>
+			                    
+			                    <p class="mui-h6 m_c_ans">
+			                    	<span class="m_c_icon1">答</span>
+			                    	<span class="m_c_text mui-ellipsis-2">友谊的小船说翻就翻</span>
+			                    </p>
+			                </div>
+			            </div>
+			            <p class="m_c_time">5天前</p>
+			        </li>
+			        
+			        <li class="mui-table-view-cell">
+			            <div class="mui-table">
+			                <div class="mui-table-cell mui-col-xs-11">
+			                    <h5 class="m_c_ask">
+			                    	<span class="m_c_icon1">问</span>
+			                    	<span class="m_c_text">内部设施怎么样?</span>
+			                    </h5>
+			                    <p class="mui-h6 m_c_ans">
+			                    	<span class="m_c_icon1">答</span>
+			                    	<span class="m_c_text mui-ellipsis-2">游船里面游玩的项目很多,服务员也很有水平</span>
+			                    </p>
+			                </div>
+			            </div>
+			            <p class="m_c_time">6天前</p>
+			        </li>
+			        
+			        <li class="mui-table-view-cell">
+			            <div class="mui-table">
+			                <div class="mui-table-cell mui-col-xs-11">
+			                    <h5 class="m_c_ask">
+			                    	<span class="m_c_icon1">问</span>
+			                    	<span class="m_c_text">安全吗?</span>
+			                    </h5>
+			                    <p class="mui-h6 m_c_ans">
+			                    	<span class="m_c_icon1">答</span>
+			                    	<span class="mui-ellipsis-2 m_c_text">已经是第二次来了，觉得很安全，随时有人巡逻，也有保安站在船边,放心好了！</span>
+			                    </p>
+			                </div>
+			            </div>
+			            <p class="m_c_time">7天前</p>
+			        </li>	    
+			    </ul>		
+		 	</div>
+		</div>
+		<p class="fix_btn"><button class="mui-btn-block mui-btn ask_btn">继续咨询</button></p>
+	</div>
+	
+	
+	<!--右侧滑块-->
+	<div class="scroll_alert">
+		<p class="s_a_title">关于天海邮轮 新世纪号</p>
+		<div class="s_a_text">
+			<textarea placeholder="请在此输入您的问题" rows="13" class="s_a_textarea"></textarea>
+			<button class="mui-btn s_a_apply">提交</button>
+			<button class="mui-btn s_a_close">取消</button>
+		</div>
+	</div>
+</body>
+<script>
+	mui.init();
+	(function($) {
+		//阻尼系数
+		var deceleration = mui.os.ios?0.003:0.0009;
+		$('.mui-scroll-wrapper').scroll({
+			bounce: false,
+			indicators: true, //是否显示滚动条
+			deceleration:deceleration
+		});
+		var articlePage = 1;
+		$.ready(function() {
+			//循环初始化所有下拉刷新，上拉加载。
+			$.each(document.querySelectorAll('.mui-slider-group'), function(index, pullRefreshEl) {
+				$(pullRefreshEl).pullToRefresh({
+					up: {
+						contentnomore:'没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: function() {
+							var self = this;
+							var ul = self.element.querySelector('.mui-table-view');
+							if(ul.children.length<10){
+								setTimeout(function() {
+									ul.appendChild(createFragment(ul, index, 5));
+									self.endPullUpToRefresh(false);
+								}, 1000);
+							}else{
+								self.endPullUpToRefresh(true);
+							}
+							
+						}
+					}
+				});
+			});
+			
+			var createFragment = function(ul,index, count,reverse) {
+				var length = ul.querySelectorAll('li').length;
+				var fragment = document.createDocumentFragment();
+				var li;
+				for (var i = 0; i < count; i++) {
+					li = document.createElement('li');
+					li.className = 'mui-table-view-cell';	
+					li.innerHTML = '<div class="mui-table">'+
+			            '<div class="mui-table-cell mui-col-xs-11">'+
+			            '<h5 class="m_c_ask">'+
+			            '<span class="m_c_icon1">问</span>'+
+			            '<span class="m_c_text">会不会翻船?</span>'+
+			            '</h5>'+
+			            '<p class="mui-h6 m_c_ans">'+
+			            '<span class="m_c_icon1">答</span>'+
+			            '<span class="m_c_text mui-ellipsis-2">友谊的小船说翻就翻</span>'+
+			            '</p>'+
+			            '</div>'+
+			            '</div>'+
+			            '<p class="m_c_time">5天前</p>'
+					fragment.appendChild(li);
+				}
+				return fragment;
+			};
+		});
+	})(mui);
+
+	$('.mui-slider-group').css('min-height',parseFloat($('html').height()-$('header').height()-$('.fix_btn').height()-60)+'px');
+
+	/*打开右侧滑块*/
+    $('.ask_btn').click(function(){
+    	$('.scroll_alert').animate({
+    		right:0
+    	},670)
+        
+    });
+    
+    /*关闭右侧滑块*/
+    $('.s_a_close').click(function(){
+    	$('.scroll_alert').animate({
+    		right:'-100%'
+    	},670)
+    });
+    
+    /*提交按钮*/
+    $('.s_a_apply').click(function(){
+    	if(!$.trim($('.s_a_textarea').val())){
+    		mui.confirm('请先输入您的问题','温馨提示',['确定']);
+    	}else{
+    		/*ask_text的值为用户输入的问题内容*/
+    		var ask_text =  $('.s_a_textarea').val();
+    		$('.scroll_alert').animate({
+    		right:'-100%'
+    	},670)
+    	}
+    });
+</script>
+</html>

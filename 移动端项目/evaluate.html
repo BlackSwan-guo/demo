@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>评价</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/mui.min.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<script src="js/mui.min.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+</head>
+<body class="bg_fff">	
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">评价</h1>
+	</header>
+	
+	<div class="mui-content evaluate">
+		<div class="evaluate_box">
+			<p class="ev_b_title mui-text-center">商家服务评价</p>
+			<p class="ev_star mui-text-center">
+				<i class="on"></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<span class="this_num" style="display: none;">1</span>
+			</p>
+			<div class="ev_b_words">
+				<textarea placeholder="写下您对商家的评价吧~" name="" rows="10" cols=""></textarea>
+			</div>
+			
+		</div>
+		<p class="fix_btn"><button class="mui-btn-block mui-btn apply_btn">提交评价</button></p>
+	</div>
+</body>
+<script>
+	/*打分*/
+	$('.ev_star i').click(function(){
+		$('.this_num').text($(this).index()+1);
+		$('.ev_star i').addClass('on');
+		$(this).nextAll().removeClass('on');
+	});
+	/*提交*/
+	$('.apply_btn').click(function(){
+//		alert($('.this_num').text());
+		if(!$.trim($('.ev_b_words textarea').val())){
+			mui.confirm('您还没有对商家进行评价呢~~','温馨提示',['确定']);
+		}
+	});
+</script>
+</html>

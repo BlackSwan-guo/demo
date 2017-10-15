@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>个人中心</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/mui.min.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
+	<script src="js/mui.min.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+</head>
+<body>	
+	
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">个人中心</h1>
+	</header>
+	
+	<div class="mui-content">
+		<div class="p_head">
+			<!--白天的背景图-->
+			<img src="images/person_day.jpg" />
+			
+			<!--晚上的背景图-->
+			<!--<img src="images/person_night.jpg" />-->
+			
+			<p class="p_user_name mui-text-center">张三，你好</p>
+		</div>
+	
+		<div class="p_main_list">
+			<div class="p_m_top x_mgb10 bg_fff">
+				<p class="p_m_title">我的订单</p>
+				<p class="p_m_main">
+					<a href="order_list.html" class="p_all_order p_order_icon">
+						<img src="images/person_all_icon.png" />
+						<span>全部订单</span>
+					</a>		
+					<a href="javascript:void(0);" class="p_unpay p_order_icon">
+						<img src="images/person_unpay_icon.png" />
+						<span>代付款</span>
+					</a>
+				</p>
+			</div>
+		
+			<ul class="mui-table-view mui-table-view-chevron">
+				<li class="mui-table-view-cell mui-media">
+					<a class="mui-navigate-right" href="mine_collection.html">
+						<img class="mui-media-object mui-pull-left img1" src="images/person_like_icon.png">
+						<div class="mui-media-body p_m_l_txt">我的收藏</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<a class="mui-navigate-right" href="mine_consultation.html">
+						<img class="mui-media-object mui-pull-left img2" src="images/person_ask_icon.png">
+						<div class="mui-media-body p_m_l_txt">我的咨询</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<a class="mui-navigate-right">
+						<img class="mui-media-object mui-pull-left img3" src="images/person_about_icon.png">
+						<div class="mui-media-body p_m_l_txt">关于我们</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<a class="mui-navigate-right" href="travel_admin.html">
+						<img class="mui-media-object mui-pull-left img4" src="images/person_admin_icon.png">
+						<div class="mui-media-body p_m_l_txt">出行人管理</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

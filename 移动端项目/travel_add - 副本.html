@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>新增旅客</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/mui.min.css" rel="stylesheet" />
+	<!--<link href="css/mui-icons-extra.css" rel="stylesheet" />-->
+	<link rel="stylesheet" href="css/mui.picker.min.css" />
+	<link href="css/style.css" rel="stylesheet" />
+	<script src="js/mui.min.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+</head>
+<body>	
+	
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<!--1、新增成人-->
+		<h1 class="mui-title tr_add_title">新增儿童<i class="tr_add_adult"></i></h1>
+		
+		<!--2、新增儿童-->
+		<!--<h1 class="mui-title">新增儿童<i class="tr_add_children"></i></h1>-->
+	</header>
+	
+	<div class="mui-content travel_add">	
+		<p class="tr_add_care_text">温馨提示：请谨慎填写旅客信息，儿童享受半价票，如因信息有误造成出行失败，用户将承担全责。</p>
+		<!--旅客信息列表-->
+		<div class="zz_over_text">
+			<!--旅客姓名-->
+			<div class="tr_add_list">
+				<p class="tr_add_l_title">旅客姓名</p>
+				<ul>
+					<li>
+						<span>中文姓名</span>
+						<input class="user_name" type="text" placeholder="与证件姓名一致" />
+					</li>
+					<li>
+						<span>英文姓</span>
+						<input class="user_first_name" type="text" placeholder="如：张小明，填ZHANG" />
+					</li>
+					<li>
+						<span>英文名</span>
+						<input class="user_last_name" type="text" placeholder="如：张小明，填XIAOMING" />
+					</li>
+				</ul>
+			</div>
+			
+			<!--证件信息-->
+			<div class="tr_add_list">
+				<p class="tr_add_l_title">证件信息</p>
+				<ul>
+					<li>
+						<span>证件类型</span>
+						<p class="tr_add_l_select" id="docTypePicker">
+							<input type="text" id="docTypeResult" placeholder="护照" value="护照" />
+							<i class="mui-icon mui-icon-arrowdown"></i>
+						</p>
+					</li>
+					<li>
+						<span>证件号码</span>
+						<input class="user_card_id" type="text" placeholder="所持证件号码" />
+					</li>
+					<li>
+						<span>国籍</span>
+						<p class="tr_add_l_select" id="nationalityPicker">
+							<input type="text" id="nationResult" placeholder="中国大陆" value="中国大陆" />
+							<i class="mui-icon mui-icon-arrowdown"></i>
+						</p>
+					</li>
+				</ul>
+			</div>
+			
+			<!--其他信息-->
+			<div class="tr_add_list">
+				<p class="tr_add_l_title">其他信息</p>
+				<ul>
+					<li>
+						<span>性别</span>						
+						<p class="tr_add_l_select">
+							<i class="selected tr_add_l_sex">男</i>
+							<i class="tr_add_l_sex">女</i>
+						</p>
+						
+					</li>
+					<li>
+						<span>出生日期</span>
+						<p class="tr_add_l_select time_btn">
+							<input id="time_result" type="text" placeholder="请选择您的出生日期" data-options="{&quot;type&quot;:&quot;date&quot;,&quot;beginYear&quot;:2014,&quot;endYear&quot;:2016}" />
+							<i class="mui-icon mui-icon-arrowdown"></i>
+						</p>
+					</li>
+					<li>
+						<span>客户类型</span>
+						<p class="tr_add_l_select" id="customerPicker">
+							<input type="text" id="customerResult" placeholder="请选择" class="user_type" />
+							<i class="mui-icon mui-icon-arrowdown"></i>
+						</p>
+					</li>
+					<li>
+						<span>联系方式</span>
+						<input class="user_phone" type="tel" placeholder="至少输入一位出行人的手机号码" />
+					</li>
+				</ul>
+			</div>
+		
+		</div>
+		<p class="fix_btn"><button class="mui-btn-block mui-btn save_btn">保存</button></p>
+	</div>
+</body>
+<script src="js/mui.picker.min.js"></script>
+<script>
+	(function($, doc) {
+		$.init();
+		$.ready(function() {
+			//证件类型选择
+			var userPicker1 = new $.PopPicker();
+			userPicker1.setData([{
+				value: 'sfz',
+				text: '身份证'
+			}, {
+				value: 'jzz',
+				text: '居住证'
+			}, {
+				value: 'qz',
+				text: '签证'
+			}, {
+				value: 'hz',
+				text: '护照'
+			}, {
+				value: 'hkb',
+				text: '户口本'
+			}, {
+				value: 'jrz',
+				text: '军人证'
+			}, {
+				value: 'tyz',
+				text: '团员证'
+			}, {
+				value: 'dyz',
+				text: '党员证'
+			}, {
+				value: 'gatxz', 
+				text: '港澳通行证'
+			}]);
+			var docTypePicker = doc.getElementById('docTypePicker');
+			var docTypeResult = doc.getElementById('docTypeResult');
+			docTypePicker.addEventListener('tap', function(event) {
+				userPicker1.show(function(items) {
+					/*处理返回值中的双引号*/
+					var str = JSON.stringify(items[0].text)
+					docTypeResult.value = str.replace("\"","").replace("\"","");
+					//返回 false 可以阻止选择框的关闭
+					//return false;
+				});
+			}, false);
+			
+			
+			/*国籍选择*/
+			var userPicker2 = new $.PopPicker();
+			userPicker2.setData([{
+				data: '1',
+				text: '中国大陆'
+			}, {
+				data: '2',
+				text: '港澳台'
+			}, {
+				data: '3',
+				text: '英国'
+			}, {
+				data: '4',
+				text: '俄罗斯'
+			}, {
+				data: '5',
+				text: '法国'
+			}, {
+				data: '6',
+				text: '德国'
+			}]);
+			var nationalityPicker = doc.getElementById('nationalityPicker');
+			var nationResult = doc.getElementById('nationResult');
+			nationalityPicker.addEventListener('tap', function(event) {
+				userPicker2.show(function(items) {
+					/*处理返回值中的双引号*/
+					var str = JSON.stringify(items[0].text)
+					nationResult.value = str.replace("\"","").replace("\"","");
+					//返回 false 可以阻止选择框的关闭
+					//return false;
+				});
+			}, false);
+			
+			
+			/*日期选择*/
+			var time_result = $('#time_result');
+			time_result.each(function(i, btn) {
+				btn.addEventListener('tap', function() {
+					num = this.getAttribute("num");
+					var optionsJson = this.getAttribute('data-options') || '{}';
+					var options = JSON.parse(optionsJson);
+					var id = this.getAttribute('id');
+					var picker = new $.DtPicker(options);
+					picker.show(function(rs) {
+						btn.value = rs.text;
+						picker.dispose();
+					});
+				}, false);
+			});
+			
+			
+			/*客户类型选择*/
+			var userPicker3 = new $.PopPicker();
+			userPicker3.setData([{
+				data: '1',
+				text: '军人'
+			}, {
+				data: '2',
+				text: '儿童'
+			}]);
+			var customerPicker = doc.getElementById('customerPicker');
+			var customerResult = doc.getElementById('customerResult');
+			customerPicker.addEventListener('tap', function(event) {
+				userPicker3.show(function(items) {
+					/*处理返回值中的双引号*/
+					var str = JSON.stringify(items[0].text)
+					customerResult.value = str.replace("\"","").replace("\"","");
+					//返回 false 可以阻止选择框的关闭
+					//return false;
+				});
+			}, false);
+			
+		});
+	})(mui, document);
+	
+	/*性别选择*/
+	$('.tr_add_l_sex').click(function(){
+		var _this = $(this).index();
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected')
+	})
+	
+	/*保存按钮*/
+	var isMobile =  /^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$/;	
+	$('.save_btn').click(function(){
+		if(!$.trim($('.user_name').val())){
+			mui.confirm('请输入您的中文姓名','温馨提示',['确定']);
+		}else if(!$.trim($('.user_first_name').val())){
+			mui.confirm('请输入您的英文姓','温馨提示',['确定']);
+		}else if(!$.trim($('.user_last_name').val())){
+			mui.confirm('请输入您的英文名','温馨提示',['确定']);
+		}else if(!$.trim($('.user_card_id').val())){
+			mui.confirm('请输入您的证件号码','温馨提示',['确定']);
+		}else if(!$.trim($('#time_result').val())){
+			mui.confirm('请选择您的出生日期','温馨提示',['确定']);
+		}else if(!$.trim($('.user_type').val())){
+			mui.confirm('请选择您的身份类型','温馨提示',['确定']);
+		}else if(!$.trim($('.user_phone').val())){
+			mui.confirm('请输入您的联系方式','温馨提示',['确定']);
+		}else if(!$(".user_phone").val().match(isMobile)){
+			mui.confirm('请输入您的联系方式','温馨提示',['确定']);
+		}else{
+			mui.confirm('提交成功','温馨提示',['确定']);
+		}
+	})
+</script>
+</html>
